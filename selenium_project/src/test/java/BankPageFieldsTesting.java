@@ -9,14 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static java.util.Collections.replaceAll;
-
-public class FirstTest {
+public class BankPageFieldsTesting {
 
     @Test
     public void testEBankLogin() {
-        WebDriver driver = new ChromeDriver();
 
+        WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.navigate().to("https://www.bankofcyprus.com/en-gb/");
@@ -26,6 +24,22 @@ public class FirstTest {
         // textContentButton = textContentButton.replaceAll("\\s+", " ");
 
         Assert.assertTrue(textContentButton.contains("Login 1bank"));
+
+        driver.quit();
+    }
+
+    @Test
+    public void testLoanHomeRenovationDefaultAmount() {
+
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        driver.navigate().to("https://www.bankofcyprus.com/en-gb/other/calculator-page/");
+
+        WebElement housingLoanAmount = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='housingLoanAmount']")));
+        String defaultLoanText = housingLoanAmount.getAttribute("value");
+
+        Assert.assertEquals("112000", defaultLoanText);
 
         driver.quit();
     }
