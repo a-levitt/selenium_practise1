@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,9 @@ public class FirstTest {
 
         WebElement buttonLogin = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'middle-bar cf')]//a[@title='Login 1bank']")));
         String textContentButton = buttonLogin.getAttribute("textContent");
-        System.out.println(textContentButton.replaceAll("\\s", ""));
+        // textContentButton = textContentButton.replaceAll("\\s+", " ");
+
+        Assert.assertTrue(textContentButton.contains("Login 1bank"));
 
         driver.quit();
     }
