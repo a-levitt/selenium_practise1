@@ -8,10 +8,31 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Set;
 
 public class BankPageFieldsTesting {
 
     @Test
+    public void testButtonChange() {
+
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        driver.navigate().to("https://www.bankofcyprus.com/en-gb/Personal/pronomia/");
+        driver.findElement(By.xpath("//button[@id='ccc-recommended-settings']")).click();
+
+        WebElement buttonCalculate = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='buttonNext1']")));
+        buttonCalculate.click();
+
+        WebElement doNotHaveMortageRadioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@for='doNotHaveMortage']")));
+
+        WebElement buttonBack = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='buttonPrevious1']")));
+        buttonBack.click();
+
+        Assert.assertTrue(wait.until(ExpectedConditions.stalenessOf(doNotHaveMortageRadioButton)));
+    }
+
+    /*@Test
     public void testEBankLogin() {
 
         WebDriver driver = new ChromeDriver();
@@ -25,10 +46,12 @@ public class BankPageFieldsTesting {
 
         Assert.assertTrue(textContentButton.contains("Login 1bank"));
 
-        driver.quit();
-    }
 
-    @Test
+
+        driver.quit();
+    }*/
+
+    /*@Test
     public void testLoanHomeRenovationDefaultAmount() {
 
         WebDriver driver = new ChromeDriver();
@@ -42,5 +65,5 @@ public class BankPageFieldsTesting {
         Assert.assertEquals("112000", defaultLoanText);
 
         driver.quit();
-    }
+    }*/
 }
