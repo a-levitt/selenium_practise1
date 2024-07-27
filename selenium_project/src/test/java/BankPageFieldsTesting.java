@@ -21,12 +21,14 @@ public class BankPageFieldsTesting {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.navigate().to("https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden");
 
+        driver.switchTo().frame("frame_examples");
+
         WebElement buttonOk = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='okButton']")));
         buttonOk.click();
 
         WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='awesome']/h1")));
 
-        Assert.assertEquals("Thanks!", textTitle);
+        Assert.assertEquals("Thanks!", textTitle.getText());
 
         driver.quit();
     }
