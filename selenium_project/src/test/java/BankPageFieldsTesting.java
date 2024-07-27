@@ -1,9 +1,11 @@
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +15,24 @@ import java.util.Set;
 public class BankPageFieldsTesting {
 
     @Test
-    public void testButtonChange() {
+    public void  testHiddenElement() throws  InterruptedException {
+
+        WebDriver driver = new FirefoxDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.navigate().to("https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden");
+
+        WebElement buttonOk = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='okButton']")));
+        buttonOk.click();
+
+        WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='awesome']/h1")));
+
+        Assert.assertEquals("Thanks!", textTitle);
+
+        driver.quit();
+    }
+
+    /*@Test
+    public void testButtonChange() throws InterruptedException{
 
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -30,7 +49,9 @@ public class BankPageFieldsTesting {
         buttonBack.click();
 
         Assert.assertTrue(wait.until(ExpectedConditions.stalenessOf(doNotHaveMortageRadioButton)));
-    }
+
+        driver.quit();
+    }*/
 
     /*@Test
     public void testEBankLogin() {
