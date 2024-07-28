@@ -1,6 +1,8 @@
+import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +16,42 @@ import java.util.Set;
 
 public class BankPageFieldsTesting {
 
-    @Test
+    /*@Test
+    public void testAlerts() throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        driver.navigate().to("https://javascript.info/alert-prompt-confirm");
+
+        *//*WebElement runAlertButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='ln4s349jve']//a[@title='run']")));
+        runAlertButton.click();
+
+        // wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        // Assert.assertEquals("Hello", alert.getText());
+        alert.accept();*//*
+
+        *//*WebElement runConfirmButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='961z8k6rty']//a[@title='run']")));
+        runConfirmButton.click();
+
+        Alert confirm = driver.switchTo().alert();
+        confirm.dismiss();
+        confirm.accept();
+        //Assert.assertEquals("true", confirm.getText());*//*
+
+        WebElement runPromptButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='zckdyq1kpo']//a[@title='run']")));
+        runPromptButton.click();
+
+        Alert prompt = driver.switchTo().alert();
+        prompt.sendKeys("32");
+        prompt.accept();
+        // Assert.assertEquals("You are 32 years old!", prompt.getText());
+
+        driver.close();
+    }*/
+
+    /*@Test
     public void  testHiddenElement() throws  InterruptedException {
 
         WebDriver driver = new FirefoxDriver();
@@ -31,7 +68,7 @@ public class BankPageFieldsTesting {
         Assert.assertEquals("Thanks!", textTitle.getText());
 
         driver.quit();
-    }
+    }*/
 
     /*@Test
     public void testButtonChange() throws InterruptedException{
